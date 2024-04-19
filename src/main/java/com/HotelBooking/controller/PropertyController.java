@@ -1,8 +1,5 @@
 package com.HotelBooking.controller;
-
-import com.HotelBooking.entity.Country;
 import com.HotelBooking.entity.Property;
-import com.HotelBooking.repository.CountryRepository;
 import com.HotelBooking.repository.PropertyRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
