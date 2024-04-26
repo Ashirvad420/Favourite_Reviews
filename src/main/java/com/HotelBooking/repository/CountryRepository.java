@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface CountryRepository extends JpaRepository<Country, Long> {
 
+
+   // void deleteByCountryName(String countryName);
 }

@@ -4,17 +4,19 @@ import com.HotelBooking.dto.LoginDto;
 import com.HotelBooking.dto.PropertyUserDto;
 import com.HotelBooking.entity.PropertyUser;
 import com.HotelBooking.repository.PropertyUserRepository;
+import org.apache.catalina.User;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class PropertyUserService {
 
     private PropertyUserRepository propertyUserRepository;
     private JWTService jwtService;
-    public UserService(PropertyUserRepository propertyUserRepository,JWTService jwtService) {
+    public PropertyUserService(PropertyUserRepository propertyUserRepository, JWTService jwtService) {
         this.propertyUserRepository = propertyUserRepository;
         this.jwtService=jwtService;
     }
@@ -51,6 +53,53 @@ public class UserService {
            {
               return jwtService.generateToken(user);
            }
+        }
+        return null;
+    }
+
+    // Get User Information By Id
+    public PropertyUser geUser(Long id) {
+       Optional<PropertyUser> opUser = propertyUserRepository.findById(id);
+       if (opUser.isPresent())
+       {
+           PropertyUser propertyUser = opUser.get();
+           return propertyUser;
+       }
+       return null;
+    }
+
+    // Get All User information
+    public List<PropertyUser> getAll() {
+       List<PropertyUser> propertyUsers = propertyUserRepository.findAll();
+       return propertyUsers;
+    }
+
+    // Delete By id
+    public String DeleteById(Long id) {
+       Optional<PropertyUser> Opuser = propertyUserRepository.findById(id);
+       if (Opuser.isPresent())
+       {
+           propertyUserRepository.deleteById(id);
+           return "Delete";
+       }
+       return null;
+    }
+
+    // Delete All
+    public String DeleteAll() {
+        propertyUserRepository.deleteAll();
+        return "deletet";
+    }
+
+    // Update User by id
+    public PropertyUser UpdateUser(Long id, PropertyUser propertyUser) {
+        Optional<PropertyUser> OpUsers = propertyUserRepository.findById(id);
+        if (OpUsers.isPresent())
+        {
+            PropertyUser propertyUsers = OpUsers.get();
+            propertyUsers.setFirstName(propertyUsers.getFirstName());
+           PropertyUser saved = propertyUserRepository.save(propertyUsers);
+           return saved;
         }
         return null;
     }

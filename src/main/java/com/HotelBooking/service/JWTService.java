@@ -67,7 +67,7 @@ public class JWTService {
  */
 
 
-/*  UserService (PropertyUser) :- Because user service generated token method because user service knows whether the username,password
+/*  PropertyUserService (PropertyUser) :- Because user service generated token method because user service knows whether the username,password
     .because user service know username, password valid or not
     . user service call this token it will supply that object that you getting it from the Database
  */
